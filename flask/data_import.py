@@ -3,6 +3,7 @@ from pymongo import MongoClient
 import json
 
 client = MongoClient('mongo')
+client.drop_database("deezer")
 db = client['deezer']
 
 df_artist = pd.read_table('res/artists.dat')

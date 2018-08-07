@@ -6,7 +6,7 @@ from datetime import datetime
 from collections import Counter
 from pymongo import MongoClient
 
-client = MongoClient("localhost", 27017)
+client = MongoClient("mongo")
 db = client['deezer']
 
 

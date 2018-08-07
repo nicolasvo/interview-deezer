@@ -1,0 +1,15 @@
+version: '3'
+services:
+  flask:
+    build:
+      context: ./flask/
+      dockerfile: Dockerfile
+    container_name: flask
+    ports:
+      - "1000:1000"
+
+  mongo:
+    image: mongo
+    container_name: mongo
+    ports:
+      - "27017:27017"
