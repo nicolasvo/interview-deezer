@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+
+	<div class="container">
+		<h4 class="pink-text center">Tag - {{ output["tag"] }}</h4>
+		<br>
+		<div class="row">
+
+            <table class="highlight col l8 offset-l2 s12">
+                {% set header = ['', 'Name', 'URL'] %}
+                <thead>
+                    <tr>
+                    {% for column_name in header %}
+                    <th>{{ column_name }}</th>
+                    {% endfor %}
+                    </tr>
+                </thead>
+
+                <tbody>
+                {% for document in output["list_document"] %}
+                <tr>
+                {% for key, value in document.items() %}
+                {% if key.startswith("redirect_app") %}
+                <td><a href="{{ value }}">Show Artist</a></td>
+                {% elif key.startswith("url") %}
+                <td><a href="{{ value }}">Last.fm</a></td>
+                {% else %}
+                <td>{{ value }}</td>
+                {% endif %}
+                {% endfor %}
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+		</div>
+
+
+	</div>
+
+{% endblock %}

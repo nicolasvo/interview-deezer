@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row center"><h2 class="green-text"></h2></div>
+
+    <div class="row">
+
+        <div class="col l6 s12">
+
+        {% set list_artist = [[artist_form.artist.label, artist_form.artist(size=20)]] %}
+
+        <h4 class="pink-text">{{ title }}</h4>
+        <form action="{{ url_for('artist')}}" method="post" autocomplete="off" autofocus="autofocus" class="col s12">
+        {{ artist_form.hidden_tag() }}
+            <table>
+            <tr>
+                {% for field in list_artist %}
+                <td class="col s6 offset-s3">{{ field[0] }} {{ field[1] }}</td>
+                {% endfor %}
+            </tr>
+
+            </table>
+            <div class="col s6 offset-s3"><br><br><button class="btn waves-effect waves-light center"> {{ artist_form.search }} </div>
+        </form>
+
+        </div>
+
+
+        <div class="col l6 s12">
+
+        {% set list_tag = [[tag_form.tag.label, tag_form.tag(size=20)]] %}
+
+        <h4 class="pink-text">{{ title }}</h4>
+        <form action="{{ url_for('tag')}}" method="post" autocomplete="off" autofocus="autofocus" class="col s12">
+        {{ tag_form.hidden_tag() }}
+            <table>
+            <tr>
+                {% for field in list_tag %}
+                <td class="col s6 offset-s3">{{ field[0] }} {{ field[1] }}</td>
+                {% endfor %}
+            </tr>
+
+            </table>
+            <div class="col s6 offset-s3"><br><br><button class="btn waves-effect waves-light center"> {{ tag_form.search }} </div>
+        </form>
+
+        </div>
+
+    </div>    
+
+</div>
+
+{% endblock %}
+
+
