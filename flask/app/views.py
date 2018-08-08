@@ -1,3 +1,4 @@
+##
 from flask import render_template, request
 from .forms import ArtistForm, TagForm
 
@@ -30,9 +31,9 @@ def artist():
         dict_fetch = {}
         for x in ['artist', 'tag', 'date']:
             dict_fetch[x] = request.form.get(x, None)
-
+        print("... here", dict_fetch)
         mongo_formatted_string = {}
-
+        
         if dict_fetch.get('artist'):
             mongo_formatted_string.update({'name': {'$regex': "\\b" + dict_fetch['artist'], '$options': 'i'}})
 
@@ -48,9 +49,9 @@ def artist():
                 list_tag = []
                 for elt in db["user_tagged_artist"].find({'artist_id': document["_id"]}):
                     list_tag.append(elt['tag_id'])
-                if list_tag:
-                    # If specific tag is wanted in addition to artist name
-                    if dict_fetch.get("tag"):
+                # If specific tag is wanted in addition to artist name
+                if len(dict_fetch["tag"])>0:
+                    if list_tag:
                         list_tag_name = []
                         for tag in list_tag:
                             list_tag_name.append(db['tag'].find_one({'_id': tag})['value'])
@@ -62,13 +63,14 @@ def artist():
                             list_tag_top = [elt[0] for elt in Counter(list_tag_name).most_common(3)]
                             document_updated.update({"tag_top": list_tag_top})
                             list_document.append(document_updated)
-                    else:
+                else:
+                    if list_tag:
                         list_tag_name = []
                         for tag in list_tag:
                             list_tag_name.append(db['tag'].find_one({'_id': tag})['value'])
                         list_tag_top = [elt[0] for elt in Counter(list_tag_name).most_common(3)]
                         document_updated.update({"tag_top": list_tag_top})
-                        list_document.append(document_updated)
+                    list_document.append(document_updated)
             output["list_document"] = list_document
 
     return render_template('artist.html', output=output)
