@@ -3,7 +3,7 @@ Interview Deezer
 
 The report is ``deezer_report.pdf``.
 
-The web app can be accessed at http://godforgiveme.zapto.org:1000/.
+The host server is currently down. If you need it, send an email at ``nicolasvo95@gmail.com``.
 
 Deployment
 ----------
