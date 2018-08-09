@@ -6,9 +6,9 @@ class ArtistForm(FlaskForm):
     artist = StringField('Artist')
     tag = StringField('Tag')
     date = StringField('Date')
-    search = SubmitField('search')
+    search = SubmitField('search artist')
 
 class TagForm(FlaskForm):
     tag = StringField('Tag')
-    search = SubmitField('search')
+    search = SubmitField('search tag')
 
