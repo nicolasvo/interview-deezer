@@ -13,7 +13,8 @@
 
         <div class="col l6 s12">
 
-        {% set list_artist = [[artist_form.artist.label, artist_form.artist(size=20)]] %}
+        {% set list_artist = [[artist_form.artist.label, artist_form.artist(size=20)],
+                                [artist_form.tag.label, artist_form.tag(size=20)]] %}
 
         <h4 class="pink-text">{{ title }}</h4>
         <form action="{{ url_for('artist')}}" method="post" autocomplete="off" autofocus="autofocus" class="col s12">
