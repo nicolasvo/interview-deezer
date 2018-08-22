@@ -56,7 +56,7 @@ def artist():
                         for tag in list_tag:
                             list_tag_name.append(db['tag'].find_one({'_id': tag})['value'])
                         for tag in set(list_tag_name):
-                            if dict_fetch["tag"] in tag:
+                            if dict_fetch["tag"].lower() in tag:
                                 has_tag = True
                                 break
                         if has_tag:
